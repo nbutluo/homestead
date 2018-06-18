@@ -11,7 +11,7 @@ class Homestead
 
         # Configure The Box
         config.vm.define settings["name"] ||= "homestead-7"
-        config.vm.box = settings["box"] ||= "laravel/homestead"
+        config.vm.box = settings["box"] ||= "lc/homestead"
         config.vm.box_version = settings["version"] ||= ">= 6.0.0"
         config.vm.hostname = settings["hostname"] ||= "homestead"
 
@@ -385,11 +385,11 @@ class Homestead
         end
 
         # Update Composer On Every Provision
-        config.vm.provision "shell" do |s|
-            s.name = "Update Composer"
-            s.inline = "sudo /usr/local/bin/composer self-update --no-progress && sudo chown -R vagrant:vagrant /home/vagrant/.composer/"
-            s.privileged = false
-        end
+        # config.vm.provision "shell" do |s|
+        #     s.name = "Update Composer"
+        #     s.inline = "sudo /usr/local/bin/composer self-update --no-progress && sudo chown -R vagrant:vagrant /home/vagrant/.composer/"
+        #     s.privileged = false
+        # end
 
         # Configure Blackfire.io
         if settings.has_key?("blackfire")
